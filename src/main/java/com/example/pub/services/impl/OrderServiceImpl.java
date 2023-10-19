@@ -1,6 +1,7 @@
 package com.example.pub.services.impl;
 
 import com.example.pub.dtos.BuyDrinkDto;
+import com.example.pub.dtos.SummaryDto;
 import com.example.pub.models.Drink;
 import com.example.pub.models.Order;
 import com.example.pub.models.User;
@@ -11,6 +12,8 @@ import com.example.pub.services.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -49,5 +52,27 @@ public class OrderServiceImpl implements OrderService {
                 buyDrinkDto.getAmount(),
                 optionalDrink.get().getPrice()* buyDrinkDto.getAmount());
         return orderRepository.save(order);
+    }
+
+    @Override
+    public List<SummaryDto> getSummary() {
+        List<Drink> allDrinks = drinkRepository.findAll();
+        List<SummaryDto> summaryDtos = new ArrayList<>();
+        for (int i = 0; i < allDrinks.size(); i++) {
+            SummaryDto summaryDto = new SummaryDto();
+            List<Order> getAllOrdersByDrinkName = orderRepository.findAllByProductName(allDrinks.get(i).getProductName());
+            summaryDto.setProduct(allDrinks.get(i).getProductName());
+            summaryDto.setUnitPrice(allDrinks.get(i).getPrice());
+            int amount = 0;
+            int summaryPrice = 0;
+            for (int j = 0; j < getAllOrdersByDrinkName.size(); j++) {
+                amount += getAllOrdersByDrinkName.get(i).getAmount();
+                summaryPrice += getAllOrdersByDrinkName.get(i).getPrice();
+            }
+            summaryDto.setSummaryPrice(summaryPrice);
+            summaryDto.setAmount(amount);
+            summaryDtos.add(summaryDto);
+        }
+        return summaryDtos;
     }
 }
