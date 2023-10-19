@@ -17,6 +17,12 @@ public class Order {
     private int amount;
     private int price;
 
+    public Order(String productName, int amount, int price) {
+        this.productName = productName;
+        this.amount = amount;
+        this.price = price;
+    }
+
     public String getProductName() {
         return productName;
     }

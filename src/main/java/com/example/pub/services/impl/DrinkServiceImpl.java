@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class DrinkServiceImpl implements DrinkService {
@@ -19,5 +20,10 @@ public class DrinkServiceImpl implements DrinkService {
     @Override
     public List<Drink> getAllDrinks() {
        return drinkRepository.findAll();
+    }
+
+    @Override
+    public Optional<Drink> getDrinkById(Long id) {
+        return drinkRepository.findById(id);
     }
 }
