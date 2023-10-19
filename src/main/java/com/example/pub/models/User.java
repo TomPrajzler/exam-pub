@@ -9,7 +9,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -30,8 +29,8 @@ public class User implements UserDetails {
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     List<Order> orders;
 
-    public User(String name, LocalDate dateOfBirth) {
-        this.name = name;
+    public User(String username, LocalDate dateOfBirth) {
+        this.username = username;
         this.dateOfBirth = dateOfBirth;
         this.isAdult = calculateIsAdult(dateOfBirth);
         isActive = true;
@@ -86,12 +85,8 @@ public class User implements UserDetails {
         return id;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String name) {
+        this.username = name;
     }
 
     public boolean isActive() {
@@ -126,6 +121,22 @@ public class User implements UserDetails {
 
     public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
     }
 }
 
