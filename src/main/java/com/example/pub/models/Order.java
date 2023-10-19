@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @NoArgsConstructor
-@Table (name = "orders")
+@Table (name = "order")
 public class Order {
     @Id
     @GeneratedValue
