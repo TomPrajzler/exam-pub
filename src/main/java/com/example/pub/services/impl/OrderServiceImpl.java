@@ -1,7 +1,9 @@
 package com.example.pub.services.impl;
 
 import com.example.pub.dtos.BuyDrinkDto;
+import com.example.pub.dtos.ProductDto;
 import com.example.pub.dtos.SummaryDto;
+import com.example.pub.dtos.UserOrderDto;
 import com.example.pub.models.Drink;
 import com.example.pub.models.Order;
 import com.example.pub.models.User;
@@ -66,13 +68,47 @@ public class OrderServiceImpl implements OrderService {
             int amount = 0;
             int summaryPrice = 0;
             for (int j = 0; j < getAllOrdersByDrinkName.size(); j++) {
-                amount += getAllOrdersByDrinkName.get(i).getAmount();
-                summaryPrice += getAllOrdersByDrinkName.get(i).getPrice();
+                amount += getAllOrdersByDrinkName.get(j).getAmount();
+                summaryPrice += getAllOrdersByDrinkName.get(j).getPrice();
             }
             summaryDto.setSummaryPrice(summaryPrice);
             summaryDto.setAmount(amount);
             summaryDtos.add(summaryDto);
         }
         return summaryDtos;
+    }
+
+    @Override
+    public List<ProductDto> getAllOrdersForEachDrink() {
+        List<Drink> allDrinks = drinkRepository.findAll();
+        List<ProductDto> productDtos = new ArrayList<>();
+        for (int i = 0; i < allDrinks.size(); i++) {
+            List<Order> orders = orderRepository.findAllByProductName(allDrinks.get(i).getProductName());
+            for (int j = 0; j < orders.size(); j++) {
+                ProductDto productDto = new ProductDto();
+                productDto.setUserId(orders.get(j).getUser().getId());
+                productDto.setAmount(orders.get(j).getAmount());
+                productDto.setPrice(orders.get(j).getPrice());
+                productDtos.add(productDto);
+            }
+        }
+        return productDtos;
+    }
+
+    @Override
+    public List<UserOrderDto> getAllUserOrderSummaries() {
+        List<User> allUsers = userRepository.findAll();
+        List<UserOrderDto> userOrderDtos = new ArrayList<>();
+        for (int i = 0; i < allUsers.size(); i++) {
+            List<Order> ordersOfUsers = orderRepository.findAllByUserId(allUsers.get(i).getId());
+            for (int j = 0; j < ordersOfUsers.size(); j++) {
+                UserOrderDto userOrderDto = new UserOrderDto();
+                userOrderDto.setUserId(allUsers.get(i).getId());
+                userOrderDto.setProduct(ordersOfUsers.get(j).getProductName());
+                userOrderDto.setPrice(ordersOfUsers.get(j).getPrice());
+                userOrderDtos.add(userOrderDto);
+            }
+        }
+        return userOrderDtos;
     }
 }

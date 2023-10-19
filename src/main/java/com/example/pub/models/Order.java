@@ -1,14 +1,13 @@
 package com.example.pub.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
 @NoArgsConstructor
 @Table (name = "order")
+@Data
 public class Order {
     @Id
     @GeneratedValue
@@ -16,7 +15,8 @@ public class Order {
     private String productName;
     private int amount;
     private int price;
-
+    @ManyToOne
+    private User user;
     public Order(String productName, int amount, int price) {
         this.productName = productName;
         this.amount = amount;

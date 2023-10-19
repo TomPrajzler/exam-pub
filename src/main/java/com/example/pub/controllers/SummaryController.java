@@ -18,9 +18,19 @@ public class SummaryController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<?> getAllOrdersForProductSummary(){
-            return ResponseEntity.ok(orderService.getSummary());
+    public ResponseEntity<?> getAllOrdersForProductSummary() {
+        return ResponseEntity.ok(orderService.getSummary());
 
+    }
+
+    @GetMapping("/product")
+    public ResponseEntity<?> getAllOrdersForEachDrink() {
+        return ResponseEntity.ok(orderService.getAllOrdersForEachDrink());
+    }
+
+    @GetMapping("/user")
+    public ResponseEntity<?> getAllUserOrderSummaries() {
+        return ResponseEntity.ok(orderService.getAllUserOrderSummaries());
     }
 
 }
