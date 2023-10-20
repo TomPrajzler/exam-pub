@@ -3,7 +3,6 @@ package com.example.pub.services;
 import com.example.pub.auth.AuthenticationRequest;
 import com.example.pub.auth.AuthenticationResponse;
 import com.example.pub.auth.RegisterRequest;
-import com.example.pub.models.Role;
 import com.example.pub.models.User;
 import com.example.pub.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
