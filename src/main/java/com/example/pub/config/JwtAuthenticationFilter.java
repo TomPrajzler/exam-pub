@@ -1,5 +1,6 @@
 package com.example.pub.config;
 
+import com.example.pub.services.JwtService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

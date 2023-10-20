@@ -21,8 +21,10 @@ public class User implements UserDetails {
     @GeneratedValue
     private Long id;
     private String username;
+    private String email;
     private boolean isActive;
     private int pocket;
+    private String password;
     private LocalDate dateOfBirth;
     @Enumerated(EnumType.STRING)
     private Role role;
@@ -56,6 +58,10 @@ public class User implements UserDetails {
     @Override
     public String getUsername() {
         return username;
+    }
+
+    public String getEmail() {
+        return email;
     }
 
     @Override
