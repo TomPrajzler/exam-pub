@@ -52,6 +52,7 @@ public class User implements UserDetails {
         return null;
     }
 
+
     @Override
     public String getUsername() {
         return username;
@@ -59,48 +60,24 @@ public class User implements UserDetails {
 
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return true;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setUsername(String name) {
-        this.username = name;
-    }
-
-    public boolean isActive() {
-        return isActive;
-    }
-
-    public void setActive(boolean active) {
-        isActive = active;
-    }
-
-
-    public int getPocket() {
-        return pocket;
-    }
 
     public void setPocket(int pocket) {
         if (pocket > 0) {

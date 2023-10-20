@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface DrinkRepository extends CrudRepository<Drink, Long> {
-    public List<Drink> findAll();
+    List<Drink> findAll();
 }
