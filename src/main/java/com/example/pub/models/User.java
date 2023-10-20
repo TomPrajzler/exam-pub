@@ -95,13 +95,6 @@ public class User implements UserDetails {
         isActive = active;
     }
 
-    public boolean isAdult() {
-        return isAdult;
-    }
-
-    public void setAdult(boolean adult) {
-        isAdult = adult;
-    }
 
     public int getPocket() {
         return pocket;
