@@ -1,6 +1,7 @@
 package com.example.pub.models;
 
 import jakarta.persistence.*;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -13,6 +14,7 @@ import java.util.List;
 
 @Entity
 @NoArgsConstructor
+@Data
 public class User implements UserDetails {
 
     @Id
@@ -106,29 +108,12 @@ public class User implements UserDetails {
         }
     }
 
-    public LocalDate getDateOfBirth() {
-        return dateOfBirth;
-    }
-
     public void setDateOfBirth(LocalDate dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
+        if(dateOfBirth.isBefore(LocalDate.now())){
+            this.dateOfBirth = dateOfBirth;
+        }
     }
 
-    public Role getRole() {
-        return role;
-    }
-
-    public void setRole(Role role) {
-        this.role = role;
-    }
-
-    public List<Order> getOrders() {
-        return orders;
-    }
-
-    public void setOrders(List<Order> orders) {
-        this.orders = orders;
-    }
 }
 
 

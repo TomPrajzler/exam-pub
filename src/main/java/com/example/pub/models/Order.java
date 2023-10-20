@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @NoArgsConstructor
-@Table (name = "orders")
+@Table(name = "orders")
 @Data
 public class Order {
     @Id
@@ -17,22 +17,11 @@ public class Order {
     private int price;
     @ManyToOne
     private User user;
+
     public Order(String productName, int amount, int price) {
         this.productName = productName;
         this.amount = amount;
         this.price = price;
-    }
-
-    public String getProductName() {
-        return productName;
-    }
-
-    public void setProductName(String productName) {
-        this.productName = productName;
-    }
-
-    public int getAmount() {
-        return amount;
     }
 
     public void setAmount(int amount) {
@@ -40,22 +29,10 @@ public class Order {
             this.amount = amount;
         }
     }
-
-    public int getPrice() {
-        return price;
-    }
-
     public void setPrice(int price) {
         if (price > 0) {
             this.price = price;
         }
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getId() {
-        return id;
-    }
 }
