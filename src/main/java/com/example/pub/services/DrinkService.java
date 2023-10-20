@@ -8,5 +8,4 @@ import java.util.Optional;
 public interface DrinkService {
     List<Drink> getAllDrinks();
 
-    Optional<Drink> getDrinkById(Long id);
 }

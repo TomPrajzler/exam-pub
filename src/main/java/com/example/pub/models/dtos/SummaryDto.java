@@ -1,4 +1,4 @@
-package com.example.pub.dtos;
+package com.example.pub.models.dtos;
 
 import com.example.pub.models.Drink;
 import com.example.pub.models.Order;

@@ -1,7 +1,7 @@
 package com.example.pub.services.impl;
 
-import com.example.pub.dtos.UserDto;
-import com.example.pub.dtos.UserWithOrdersDto;
+import com.example.pub.models.dtos.UserDto;
+import com.example.pub.models.dtos.UserWithOrdersDto;
 import com.example.pub.models.User;
 import com.example.pub.repositories.UserRepository;
 import com.example.pub.services.UserService;

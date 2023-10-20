@@ -1,7 +1,5 @@
 package com.example.pub.controllers;
-import com.example.pub.dtos.BuyDrinkDto;
-import com.example.pub.models.Drink;
-import com.example.pub.models.User;
+import com.example.pub.models.dtos.BuyDrinkDto;
 import com.example.pub.services.DrinkService;
 import com.example.pub.services.OrderService;
 import com.example.pub.services.UserService;
@@ -10,8 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.Optional;
 
 @RestController
 public class OrderController {

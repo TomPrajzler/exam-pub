@@ -1,9 +1,9 @@
 package com.example.pub.services.impl;
 
-import com.example.pub.dtos.BuyDrinkDto;
-import com.example.pub.dtos.ProductDto;
-import com.example.pub.dtos.SummaryDto;
-import com.example.pub.dtos.UserOrderDto;
+import com.example.pub.models.dtos.BuyDrinkDto;
+import com.example.pub.models.dtos.ProductDto;
+import com.example.pub.models.dtos.SummaryDto;
+import com.example.pub.models.dtos.UserOrderDto;
 import com.example.pub.models.Drink;
 import com.example.pub.models.Order;
 import com.example.pub.models.User;
@@ -44,7 +44,8 @@ public class OrderServiceImpl implements OrderService {
         if (optionalDrink.isEmpty()) {
             throw new IllegalArgumentException("Drink with this id doesn't exist");
         }
-        if(optionalDrink.get().isForAdult() && !optionalUser.get().calculateIsAdult(optionalUser.get().getDateOfBirth())){
+        if(optionalDrink.get().isForAdult() &&
+                !optionalUser.get().calculateIsAdult(optionalUser.get().getDateOfBirth())){
             throw new IllegalArgumentException("User has to be over 18 years old to buy this drink");
         }
         if(optionalUser.get().getPocket() < optionalDrink.get().getPrice()* buyDrinkDto.getAmount()){
