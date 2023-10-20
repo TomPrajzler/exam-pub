@@ -20,7 +20,6 @@ public class User implements UserDetails {
     private Long id;
     private String username;
     private boolean isActive;
-    private boolean isAdult;
     private int pocket;
     private LocalDate dateOfBirth;
     @Enumerated(EnumType.STRING)
@@ -32,11 +31,10 @@ public class User implements UserDetails {
     public User(String username, LocalDate dateOfBirth) {
         this.username = username;
         this.dateOfBirth = dateOfBirth;
-        this.isAdult = calculateIsAdult(dateOfBirth);
         isActive = true;
         pocket = 0;
     }
-    private boolean calculateIsAdult(LocalDate dateOfBirth) {
+    public boolean calculateIsAdult(LocalDate dateOfBirth) {
         LocalDate now = LocalDate.now();
         Period age = Period.between(dateOfBirth, now);
         return age.getYears() >= 18;
