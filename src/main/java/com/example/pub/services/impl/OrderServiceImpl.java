@@ -44,7 +44,7 @@ public class OrderServiceImpl implements OrderService {
         if (optionalDrink.isEmpty()) {
             throw new IllegalArgumentException("Drink with this id doesn't exist");
         }
-        if(optionalDrink.get().isForAdult() && !optionalUser.get().isAdult()){
+        if(optionalDrink.get().isForAdult() && !optionalUser.get().calculateIsAdult(optionalUser.get().getDateOfBirth())){
             throw new IllegalArgumentException("User has to be over 18 years old to buy this drink");
         }
         if(optionalUser.get().getPocket() < optionalDrink.get().getPrice()* buyDrinkDto.getAmount()){

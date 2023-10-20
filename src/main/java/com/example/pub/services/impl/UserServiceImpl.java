@@ -1,6 +1,7 @@
 package com.example.pub.services.impl;
 
 import com.example.pub.dtos.UserDto;
+import com.example.pub.dtos.UserWithOrdersDto;
 import com.example.pub.models.User;
 import com.example.pub.repositories.UserRepository;
 import com.example.pub.services.UserService;
@@ -31,7 +32,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Optional<User> getUserById(Long id) {
-        return userRepository.findById(id);
+    public UserWithOrdersDto getUserById(Long id) {
+        Optional<User> optionalUser = userRepository.findById(id);
+        if(optionalUser.isEmpty()){
+            throw new IllegalArgumentException("User with this id doesn't exist");
+        }else{
+            UserWithOrdersDto userWithOrdersDto = new UserWithOrdersDto(optionalUser.get());
+            return userWithOrdersDto;
+        }
+
     }
 }

@@ -15,22 +15,23 @@ import java.util.Optional;
 @RequestMapping("/users")
 public class UserController {
     private UserService userService;
+
     @Autowired
-    public UserController (UserService userService){
+    public UserController(UserService userService) {
         this.userService = userService;
     }
 
     @GetMapping("")
-    public ResponseEntity<?> getAllUsers(){
+    public ResponseEntity<?> getAllUsers() {
         return ResponseEntity.ok(userService.getAllUsers());
     }
+
     @GetMapping("/{id}")
-    public ResponseEntity<?> getUserById(@PathVariable Long id){
-        Optional<User> optionalUser = userService.getUserById(id);
-        if (optionalUser.isPresent()) {
-            return ResponseEntity.ok().body(optionalUser);
-        } else {
-            return ResponseEntity.status(404).body("User with this id doesn't exist");
+    public ResponseEntity<?> getUserById(@PathVariable Long id) {
+        try{
+            return ResponseEntity.ok().body(userService.getUserById(id));
+        } catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
-    }
+}
 }
